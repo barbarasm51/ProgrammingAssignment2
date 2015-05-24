@@ -1,8 +1,9 @@
-## Functions in this file create an object that stores a matrix and caches the 
-## inverse of that matrix
+## Functions in this file create a special "matrix" object   
+## and caches the inverse of that matrix
 
-## The first function 'makeCacheMatrix' sets up
-## a list containing a function to
+## The first function 'makeCacheMatrix' sets up a special "matrix" object
+## that can cache its inverse. The object created is a list containing a
+## function to:
 
 ##      1.  set the value of the matrix
 ##      2.  get the value of the matrix
@@ -14,6 +15,7 @@ makeCacheMatrix <- function(x = matrix()) {
         set <- function(y) {
                 x<<-y
                 s<<-NULL
+                
         }
         get<-function() x
         setinverse <- function(solve) s<<- solve
@@ -23,8 +25,8 @@ makeCacheMatrix <- function(x = matrix()) {
                 getinverse=getinverse)
 }
 
-## The second function calculates the inverse of a matrix whose special 'vector'
-## was created with the above function. However, it first checks to see if the
+## The second function calculates the inverse of a matrix whose special 'matrix'
+## object was created in the first function. It first checks to see if the
 ## inverse has already been calculated 'if(!is.null(s))'. If so, 
 ## it `get`s the inverse from the cache and skips the computation. Otherwise, 
 ## it calculates the inverse of the data and sets the value of the inverse in 
